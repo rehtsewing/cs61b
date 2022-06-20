@@ -19,7 +19,7 @@ public class LinkedListDeque<T> {
     private int size;
 
     public LinkedListDeque() {
-        sentinel = new DequeNode(null, null, null);
+        sentinel = new DequeNode((T)"null", null, null);
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
         size = 0;
@@ -47,12 +47,13 @@ public class LinkedListDeque<T> {
 
     public void printDeque() {
         DequeNode B = sentinel.next;
-        for (int i = 0; i < size - 1; i++){   // not sure
+        for (int i = 0; i < size; i++){   // not sure
             System.out.print(B.val + " ");
             B = B.next;
         }
-        System.out.println(B.val);
+        System.out.println();
     }
+
     public T get(int index) {
         DequeNode B = sentinel.next;
         for (int i = 0; i < size; i++){
@@ -65,7 +66,7 @@ public class LinkedListDeque<T> {
     }
 
     public T getRecursive(int index) {
-        if (index > size || size == 0 || index < 0) {
+        if (index > size || isEmpty() || index < 0) {
             return null;
         }
         return RecursiveHelper(sentinel.next, index);
@@ -81,21 +82,22 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst() {
-        if (size == 0) {
+        if (isEmpty()) {
             return null;
         }
-        T x = get(0);
+        T x = sentinel.next.val;
         sentinel.next.next.prev = sentinel;
         sentinel.next = sentinel.next.next;
         size -= 1;
         return x;
     }
 
+    /* avoid using get() here which waste much time*/
     public T removeLast() {
-        if (size == 0) {
+        if (isEmpty()) {
             return null;
         }
-        T x = get(size - 1);
+        T x = sentinel.prev.val;
         sentinel.prev.prev.next = sentinel;
         sentinel.prev = sentinel.prev.prev;
         size -= 1;
@@ -121,3 +123,4 @@ public class LinkedListDeque<T> {
     }
 
 }
+

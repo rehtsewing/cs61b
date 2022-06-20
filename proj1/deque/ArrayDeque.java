@@ -77,6 +77,9 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
+        if (size <= 0) {
+            return null;
+        }
         int actualIndex = firstIndex + index + 1;
         if (actualIndex < ADeque.length) {
             return ADeque[actualIndex];
@@ -92,6 +95,9 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
+        if (size <= 0) {
+            return null;
+        }
         firstIndex = indexTrans(firstIndex + 1);
         T item = ADeque[firstIndex];
         ADeque[firstIndex] = null;
@@ -101,6 +107,9 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
+        if (size <= 0) {
+            return null;
+        }
         lastIndex = indexTrans(lastIndex - 1);
         T item = ADeque[lastIndex];
         ADeque[lastIndex] = null;

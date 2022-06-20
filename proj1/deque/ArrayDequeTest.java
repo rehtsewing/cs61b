@@ -40,7 +40,7 @@ public class ArrayDequeTest {
     public void randomizedTest() {
         ArrayDeque<Integer> L = new ArrayDeque<>();
 
-        int N = 1000, s = 0;
+        int N = 10, s = 0;
         for (int i = 0; i < N; i += 1) {
             int operationNumber = StdRandom.uniform(0, 5);
             if (operationNumber == 0) {
@@ -58,7 +58,7 @@ public class ArrayDequeTest {
                     L.addFirst(m);
                     s += 1;
                 }else if (operationNumber == 3) {
-                    int removeVal = L.removeLast();
+                    L.removeLast();
                     s -= 1;
                 }else if (operationNumber == 4) {
                     int removeValFirst = L.removeFirst();
